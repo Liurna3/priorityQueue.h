@@ -55,6 +55,7 @@ void priorityQueueFree(PriorityQueue *queue)
 
 /**
  * Obtener la direccion en una posicion de la lista
+ * @note esta funcion es para operaciones internas y debugging
  * @param queue direccion a la lista
  * @param position
  */
