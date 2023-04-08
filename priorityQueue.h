@@ -1,3 +1,10 @@
+/**
+ * AUTOR: Luis Eduardo Galindo Amaya                           FECHA: 08-04-2023
+ *
+ * DESCRIPCIÓN:
+ * Este archivo implementa los metodos para utilizar una lista enlazada como una 
+ * cola con prioridad.
+ */
 
 #ifndef priorityQueue
 #define priorityQueue
@@ -5,21 +12,36 @@
 #include "linkedList.h"
 #include <stdio.h>
 
-struct PriorityQueue
+typedef struct PriorityQueue
 {
   LinkedList data;
-};
+} PriorityQueue;
 
-typedef struct PriorityQueue PriorityQueue;
+/**
+ * Inicializar la cola con prioridad
+ * @param queue direccion a la lista
+ */
+void priorityQueueInit(PriorityQueue *queue)
+{
+  linkedListInit(&(queue->data));
+}
 
+/**
+ * Numero de elementos en la lista
+ * @param queue direccion a la lista
+ */
 int priorityQueueLenght(PriorityQueue *queue)
 {
   return linkedListLenght(&(queue->data));
 }
 
-void priorityQueueInit(PriorityQueue *queue)
+/**
+ * Retorar si la lista esta vacia
+ * @param queue direccion a la lista
+ */
+int priorityQueueEmpty(PriorityQueue *queue)
 {
-  linkedListInit(&(queue->data));
+  return linkedListEmpty(&(queue->data));
 }
 
 /**
@@ -33,11 +55,12 @@ void priorityQueueFree(PriorityQueue *queue)
 
 /**
  * Obtener la direccion en una posicion de la lista
- *
+ * @param queue direccion a la lista
+ * @param position
  */
-LinkedListNode *priorityQueueGet(PriorityQueue *queue, int i)
+LinkedListNode *priorityQueueGet(PriorityQueue *queue, int position)
 {
-  return linkedListGet(&(queue->data), i);
+  return linkedListGet(&(queue->data), position);
 }
 
 /**
@@ -56,7 +79,7 @@ LinkedListNode *priorityQueuePeek(PriorityQueue *queue)
  * @param queue direccion a la lista
  * @return direccion al elemnto eliminado
  */
-LinkedListNode *priorityQueueRemove(PriorityQueue *queue)
+LinkedListNode *priorityQueueDequeue(PriorityQueue *queue)
 {
   LinkedListNode *foo = linkedListNodeCopy(priorityQueueGet(queue, 0));
   linkedListRemove(&(queue->data), 0);
@@ -68,7 +91,7 @@ LinkedListNode *priorityQueueRemove(PriorityQueue *queue)
  * @param queue direccion a la lista
  * @param node direccion al nodo
  */
-void priorityQueueInsert(PriorityQueue *queue, LinkedListNode *node)
+void priorityQueueEnqueue(PriorityQueue *queue, LinkedListNode *node)
 {
   int i = 0;
 

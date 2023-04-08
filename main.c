@@ -1,13 +1,8 @@
 
 #include "priorityQueue.h"
 
-void linkedListNodeDisplay(LinkedListNode *node)
-{
-  printf("prioridad: %d\n", node->priority);
-}
-
-void pqInsert(PriorityQueue *pq, PRIORITY_DATA_TYPE priority) {
-  priorityQueueInsert(pq, linkedListNodeCreate(priority));
+void pqEnqueue(PriorityQueue *pq, PRIORITY_DATA_TYPE priority) {
+  priorityQueueEnqueue(pq, linkedListNodeCreate(priority));
 }
 
 LinkedListNode* pqPeek(PriorityQueue *pq) 
@@ -20,9 +15,9 @@ LinkedListNode* pqGet(PriorityQueue *pq, int position)
   return priorityQueueGet(pq, position);
 }
 
-PRIORITY_DATA_TYPE pqRemove(PriorityQueue *pq) 
+PRIORITY_DATA_TYPE pqDequeue(PriorityQueue *pq) 
 {
-  LinkedListNode *a = priorityQueueRemove(pq);
+  LinkedListNode *a = priorityQueueDequeue(pq);
   PRIORITY_DATA_TYPE priority = a->priority;
   free(a);
 
@@ -34,11 +29,11 @@ int main()
   PriorityQueue pq;
   priorityQueueInit(&pq);
 
-  pqInsert(&pq, 14);
-  pqInsert(&pq, 5);
-  pqInsert(&pq, 9);
-  pqInsert(&pq, 0);
-  pqInsert(&pq, 10);
+  pqEnqueue(&pq, 14);
+  pqEnqueue(&pq, 5);
+  pqEnqueue(&pq, 9);
+  pqEnqueue(&pq, 0);
+  pqEnqueue(&pq, 10);
 
   printf("el valor mas pequeño es: %d\n", pqPeek(&pq)->priority);
   for (int i = 0; i < priorityQueueLenght(&pq); i++)
@@ -48,10 +43,10 @@ int main()
 
   printf("--- Pruebas de eliminacion ---\n");
 
-  printf("%d eliminado\n", pqRemove(&pq));
-  printf("%d eliminado\n", pqRemove(&pq));
-  printf("%d eliminado\n", pqRemove(&pq));
-  printf("%d eliminado\n", pqRemove(&pq));
+  printf("%d eliminado\n", pqDequeue(&pq));
+  printf("%d eliminado\n", pqDequeue(&pq));
+  printf("%d eliminado\n", pqDequeue(&pq));
+  printf("%d eliminado\n", pqDequeue(&pq));
 
   printf("el valor mas pequeño es: %d\n", pqPeek(&pq)->priority);
   for (int i = 0; i < priorityQueueLenght(&pq); i++)

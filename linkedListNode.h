@@ -16,16 +16,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct LinkedListNode
+typedef struct LinkedListNode
 {
   /* Propiedades */
   PRIORITY_DATA_TYPE priority;
 
   /* Required */
   struct LinkedListNode *next;
-};
-
-typedef struct LinkedListNode LinkedListNode;
+} LinkedListNode;
 
 /**
  * Crear un nodo para la lista
@@ -46,6 +44,14 @@ LinkedListNode *linkedListNodeCreate(PRIORITY_DATA_TYPE priority)
 }
 
 /**
+ * Imprime el valor en el stdio
+ */
+void linkedListNodeDisplay(LinkedListNode *node)
+{
+  printf("prioridad: %d\n", node->priority);
+}
+
+/**
  * Copiar un nodo de la lista
  * @param node direccion al nodo
  * @return
@@ -54,6 +60,5 @@ LinkedListNode *linkedListNodeCopy(LinkedListNode *node)
 {
   return linkedListNodeCreate(node->priority);
 }
-
 
 #endif

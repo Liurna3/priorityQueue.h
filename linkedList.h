@@ -13,13 +13,11 @@
 #include "linkedListNode.h"
 #include <stdlib.h>
 
-struct LinkedList
+typedef struct LinkedList
 {
   struct LinkedListNode *nodes;
   int size;
-};
-
-typedef struct LinkedList LinkedList;
+} LinkedList;
 
 /**
  * Longitud de la lista enlazada
@@ -255,7 +253,7 @@ void linkedListFree(LinkedList *list)
 {
   for (int i = linkedListLenght(list); i > 0; i--)
   {
-    linkedListRemoveLast(list);
+    linkedListRemove(list, 0);
   }
 }
 
